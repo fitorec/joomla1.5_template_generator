@@ -16,3 +16,11 @@ main features
 How do you use?
 -----------------------------
 >**To run just click on the file `template_generator`**
+
+
+Contributors(tanks)
+--------------------------------------------------------------------------------------
+
+- [mundosica](http://mundosica.com)
+
+`Si deseas contribuir, por favor no dudes en contactarme.`
