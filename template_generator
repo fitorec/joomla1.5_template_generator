@@ -1,0 +1,137 @@
+#!/bin/bash
+#
+#Author: fitorec <chanerec@gmail.com>
+#Description:
+#
+#
+
+#$langselect
+langselect=`zenity --title="Seleccione su idioma" --width=370 --height=180 \
+                            --text="Select:" \
+                            --list --column="Selected" --column="Language" \
+                            --radiolist TRUE Spanish FALSE English `
+
+if [ $? -eq 0 ];
+then
+        IFS="|"
+        for langSselect in $langselect
+        do
+               if [ "$langSselect" = "English" ];
+                     then 
+                     YOURLANG="makeJoomlaTemplates/languages/en.pot"
+               elif [ "$langSselect" = "Spanish" ];
+                     then
+                     YOURLANG="makeJoomlaTemplates/languages/es.pot"                     
+               fi
+        done
+        IFS=""
+else
+        echo cancel selected
+        exit
+fi
+
+LANGFILE=$(cat $YOURLANG)
+
+n=1
+while read curline; do
+	export I18N$n="$curline" #> /dev/null 2>&1
+	let n=n+1
+done < $YOURLANG
+
+#echo "#debugging"
+#echo "$I18N1"
+##end language implementation
+
+#path
+path=`pwd`
+path=`zenity  --directory --file-selection  --title="$I18N3"`
+
+#$templateName
+templateName=`zenity  --title="$I18N2" --width=370 --height=200 \
+								--text "$I18N4" \
+								--entry --entry-text "$I18N5"`
+
+echo creando estructura de la plantilla en: $path/$templateName;
+
+mkdir $path/$templateName;
+cp -R makeJoomlaTemplates/base/* $path/$templateName;
+cp -R makeJoomlaTemplates/base_es/* $path/$templateName;
+
+#$authorName;
+authorName=`zenity  --title="$I18N2" --width=370 --height=200 \
+								--text "$I18N6" \
+								--entry --entry-text "$USER"`
+
+#$authorMail;
+authorMail=`zenity  --title="$I18N2" --width=370 --height=200 \
+								--text "$I18N7" \
+								--entry --entry-text "$USER@mail.com"`
+
+#$authorURL;
+authorURL=`zenity  --title="$I18N2" --width=400 --height=200 \
+								--text "$I18N8:" \
+								--entry --entry-text "http://fitorec.wordpress.com/"`
+
+#$description;
+description=`zenity  --title="$I18N2" --width=200 --height=200 \
+								--text "Escriba una descripcion para la plantilla" \
+								--entry --entry-text "Plantilla generada con JoomlaTemplates-generator"`
+
+#$version;
+version=`zenity  --title="$I18N2" --width=200 --height=200 \
+								--text "$I18N9" \
+								--entry --entry-text "1.0.1"`
+
+#$license
+license=`zenity --title="$I18N2" --width=400 --height=300 \
+                            --text="$I18N10:" \
+                            --list --column="Selected" --column="License" \
+                            --radiolist TRUE "GNU/GPL V3" False "Academic Free License" False "BSD license" FALSE MIT FALSE "Apache License, Version 2.0"  False "Copyright - Some rights reserved" FALSE "Copyright - All rights reserved"`
+
+#builting templateDetails.xml
+creationDate=`date --rfc-3339=date`
+echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>
+<install version=\"1.5\" type=\"template\">
+<name>$templateName</name>
+<creationDate>$creationDate</creationDate>
+<author>$authorName</author>
+<copyright>$license</copyright>
+<authorUrl>$authorURL</authorUrl>
+<authorEmail>$authorMail</authorEmail>
+<version>$version</version>
+<description>
+<![CDATA[$description]]>
+</description>
+
+<files>
+<filename>css/index.html</filename>
+<filename>css/template.css</filename>
+<filename>html/com_/index.html</filename>
+<filename>html/index.html</filename>
+<filename>html/mod_/index.html</filename>
+<filename>images/index.html</filename>
+<filename>js/core.js</filename>
+<filename>js/index.html</filename>
+<filename>favicon.ico</filename>
+<filename>index.php</filename>
+<filename>params.ini</filename>
+<filename>templateDetails.xml</filename>
+<filename>template_thumbnail.png</filename>
+</files>
+
+<positions>
+</positions>
+
+<params>
+</params>
+
+</install>" >> $path/$templateName/templateDetails.xml
+#cd $path/$templateName;
+#
+#for f in $(find . | grep -E ".+\."); do
+#	echo "<filename>$f</filename>";
+#done;
+
+#Exportar un proyecto
+#path
+#find . | grep -v ".svn"  | sort | sed "s/\.\//<filename>/" | sed "s/$/<\/filename>/" > out.txt 

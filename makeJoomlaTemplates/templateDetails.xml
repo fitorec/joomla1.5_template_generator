@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8">
+<install version="1.5" type="template">
+<name></name>
+<creationDate></creationDate>
+<author></author>
+<copyright></copyright>
+<authorUrl></authorUrl>
+<authorEmail></authorEmail>
+<version></version>
+<description>
+<![CDATA[]]>
+</description>
+
+<files>
+</files>
+
+<positions>
+</positions>
+
+<params>
+</params>
+
+</install>

@@ -1,0 +1,10 @@
+Error
+Template Builder for Joomla 1.5
+Select the parent directory where the template will
+Enter a template name
+my_template
+Author
+Email the author
+Author's Site URL
+Template version
+Select the license to use

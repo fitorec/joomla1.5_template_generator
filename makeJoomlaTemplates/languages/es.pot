@@ -1,0 +1,10 @@
+Error
+Generador de Plantillas para Joomla 1.5
+Seleccione el  directorio PADRE de donde se pondra la plantilla
+Escriba un nombre de la plantilla
+mi_plantilla
+Autor
+Email del autor
+URL del sitio del autor
+Versión de la plantilla
+Seleccione la Licencia a utilizar
