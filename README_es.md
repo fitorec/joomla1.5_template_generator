@@ -20,6 +20,6 @@ Como utilizar?
 Colaboradores(gracias)
 --------------------------------------------------------------------------------------
 
-- [mundosica](http://mundosica.com)
+- [mundosica](http://mundosica.com) - Tecnologías  en libertad tecnologías para tod@s.
 
 `If you wish to contribute, please do not hesitate to contact me.`

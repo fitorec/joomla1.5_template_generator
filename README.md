@@ -21,6 +21,6 @@ How do you use?
 Contributors(tanks)
 --------------------------------------------------------------------------------------
 
-- [mundosica](http://mundosica.com)
+- [mundosica](http://mundosica.com) - Free technologies, technologies for all.
 
 `Si deseas contribuir, por favor no dudes en contactarme.`
